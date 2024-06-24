@@ -1,24 +1,20 @@
 1.  Consulta para verificar o saldo atual de uma conta corrente específica:
-⦁	Esta consulta retorna o saldo inicial e o saldo atual da conta corrente com idconta = 1.
+Esta consulta retorna o saldo inicial e o saldo atual da conta corrente com idconta = 1.
 
 SELECT idconta, saldoinicial, saldoatual
 FROM public.contacorrente
 WHERE idconta = 1;
 
 2. Consulta para listar todas as contas a pagar que estão pendentes e seu fornecedor:
-⦁	Esta consulta lista todas as contas a pagar que estão com o status 'Pendente', mostrando também o nome do fornecedor correspondente.
+Esta consulta lista todas as contas a pagar que estão com o status 'Pendente', mostrando também o nome do fornecedor correspondente.
 
 SELECT cp.idcontapagar, cp.parcela, f.nome AS fornecedor, cp.datadigitacao, cp.datavencimento, cp.valorconta, cp.status
 FROM public.contaspagar cp
 JOIN public.fornecedores f ON cp.idfornecedor = f.idfornecedor
 WHERE cp.status = 'Pendente';
 
-
-
-
-
 3. Consulta para listar todos os pagamentos realizados em um determinado período:
-⦁	Esta consulta retorna todos os pagamentos realizados entre 1º de janeiro de 2023 e 31 de janeiro de 2023, incluindo o nome do cliente e o número da conta corrente associada.
+Esta consulta retorna todos os pagamentos realizados entre 1º de janeiro de 2023 e 31 de janeiro de 2023, incluindo o nome do cliente e o número da conta corrente associada.
 
 SELECT p.idpagamento, p.datapagamento, p.valorpago, c.nome AS cliente, cc.numeroconta
 FROM public.pagamentos p
@@ -27,7 +23,7 @@ JOIN public.clientes c ON cc.idbanco = c.idcliente
 WHERE p.datapagamento BETWEEN '2023-01-01' AND '2023-01-31';
 
 4. Consulta para listar todas as contas a receber pendentes e seus respectivos clientes:
-⦁	Esta consulta lista todas as contas a receber que estão com o status 'Pendente', mostrando também o nome do cliente correspondente.
+Esta consulta lista todas as contas a receber que estão com o status 'Pendente', mostrando também o nome do cliente correspondente.
 
 SELECT cr.idcontareceber, cr.parcela, c.nome AS cliente, cr.datadigitacao, cr.datavencimento, cr.valorconta, cr.status
 FROM public.contasreceber cr
